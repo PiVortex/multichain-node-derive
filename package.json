@@ -1,0 +1,22 @@
+{
+    "name": "your-project-name",
+    "version": "1.0.0",
+    "description": "Description of your project.",
+    "main": "run.js",
+    "type": "module",
+    "scripts": {
+      "start": "node your-main-file.js"
+    },
+    "dependencies": {
+      "near-api-js": "^0.44.0",
+      "elliptic": "^6.5.4",
+      "bn.js": "^5.2.0",
+      "keccak": "^3.0.2",
+      "hash.js": "^1.1.7",
+      "bs58check": "^2.1.2",
+      "bitcoinjs-lib": "^6.1.0"
+    },
+    "author": "Your Name",
+    "license": "ISC"
+  }
+  
