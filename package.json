@@ -1,7 +1,7 @@
 {
-    "name": "your-project-name",
+    "name": "multichain-node-derive",
     "version": "1.0.0",
-    "description": "Description of your project.",
+    "description": "Derive Eth and Btc addresses",
     "main": "run.js",
     "type": "module",
     "scripts": {
@@ -15,8 +15,6 @@
       "hash.js": "^1.1.7",
       "bs58check": "^2.1.2",
       "bitcoinjs-lib": "^6.1.0"
-    },
-    "author": "Your Name",
-    "license": "ISC"
+    }
   }
   
