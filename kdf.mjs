@@ -6,8 +6,10 @@ import hash from 'hash.js';
 import bs58check from 'bs58check';
 import { Buffer } from 'buffer';
 import crypto from 'crypto';
+import * as bitcoin from 'bitcoinjs-lib';
 
-const {ec: EC } = elliptic;
+
+const { ec: EC } = elliptic;
 
 const rootPublicKey = 'secp256k1:4NfTiv3UsGahebgTaHyD9vF8KYKMBnfd6kh94mK6xv8fGBiJB8TBtFMP5WWXz6B89Ac1fbpzPwAvoyQebemHFwx3';
 
@@ -56,13 +58,13 @@ export function uncompressedHexPointToEvmAddress(uncompressedHexPoint) {
 }
 
 export async function uncompressedHexPointToBtcAddress(publicKeyHex, network) {
-  const publicKeyBytes = Buffer.from(publicKeyHex, 'hex');
+  const publicKeyBytes = Buffer.from(publicKeyHex.substring(2), 'hex');
   const sha256HashOutput = crypto.createHash('sha256').update(publicKeyBytes).digest();
   const ripemd160 = hash.ripemd160().update(sha256HashOutput).digest();
 
-  const network_byte = network === 'bitcoin' ? 0x00 : 0x6f;
+  const network_byte = network === bitcoin.networks.bitcoin ? 0x00 : 0x6f;
   const networkByte = Buffer.from([network_byte]);
-  const networkByteAndRipemd160 = Buffer.concat([networkByte, ripemd160]);
+  const networkByteAndRipemd160 = Buffer.concat([networkByte, Buffer.from(ripemd160)]);
 
   const address = bs58check.encode(networkByteAndRipemd160);
   return address;

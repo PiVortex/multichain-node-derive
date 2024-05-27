@@ -1,16 +1,16 @@
 import { deriveChildPublicKey, najPublicKeyStrToUncompressedHexPoint, uncompressedHexPointToEvmAddress, uncompressedHexPointToBtcAddress } from './kdf.mjs';
-import * as bitcoin from "bitcoinjs-lib";
+import * as bitcoin from 'bitcoinjs-lib';
 
 async function deriveEthAddress(accountId, derivation_path = '') {
     const publicKey = await deriveChildPublicKey(najPublicKeyStrToUncompressedHexPoint(), accountId, derivation_path);
     const address = await uncompressedHexPointToEvmAddress(publicKey);
-    console.log(address);
-  }
+    console.log('Ethereum Address:', address);
+}
 
 async function deriveBtcAddress(accountId, derivation_path = '') {
-  const publicKey = await deriveChildPublicKey(najPublicKeyStrToUncompressedHexPoint(), accountId, derivation_path);
-  const address = await uncompressedHexPointToBtcAddress(publicKey, bitcoin.networks.testnet);
-  console.log(address);
+    const publicKey = await deriveChildPublicKey(najPublicKeyStrToUncompressedHexPoint(), accountId, derivation_path);
+    const address = await uncompressedHexPointToBtcAddress(publicKey, bitcoin.networks.testnet);
+    console.log('Bitcoin Address:', address);
 }
 
 const args = process.argv.slice(2);
